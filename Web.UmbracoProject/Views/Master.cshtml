@@ -1,0 +1,38 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+@{
+    Layout = null;
+}
+@* the fun starts here *@
+
+<!DOCTYPE html>
+<html lang="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName">
+<head>
+    @*<title>@(Model.PageTitle) - @(Model.SiteName)</title>*@
+    @(await Html.PartialAsync("Head/Meta"))
+    <!-- Google Fonts -->
+    @(await Html.PartialAsync("Head/GoogleFonts"))
+    <!-- CSS Files -->
+    @(await Html.PartialAsync("Head/CssFile"))
+
+</head>
+<body>
+
+    <!-- ======= Top Bar ======= -->
+    @(await Html.PartialAsync("Body/Top/TopBar"))
+    <!-- ======= Header ======= -->
+    @(await Html.PartialAsync("Body/Top/Header"))
+    <!-- ======= Render Body ======= -->
+    @RenderBody()
+
+    <!-- ======= Footer ======= -->
+    @(await Html.PartialAsync("Body/Footer/FooterContent"))
+    <!-- JS Files -->
+    @Html.Partial("Head/JsFile")
+
+</body>
+</html>

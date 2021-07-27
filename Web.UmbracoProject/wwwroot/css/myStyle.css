@@ -1,0 +1,9 @@
+
+.btn-link {
+    font-weight: 400;
+    color: #e96b56;
+    text-decoration: none;
+}
+.btn-group-sm > .btn, .btn-sm {
+    padding: 0.15rem .1rem;
+}

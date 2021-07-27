@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Web.UmbracoProject.Infrastructure.Components.Models.LocalizationModel>
+
+@foreach (var language in Model)
+{
+    <a class="dropdown-item" href="@language.Url">@language.Name</a>
+}

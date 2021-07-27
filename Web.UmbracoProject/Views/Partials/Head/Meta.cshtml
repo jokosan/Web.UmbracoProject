@@ -1,0 +1,11 @@
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Core.Models;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>@Model.Value("pageTitle")</title>
+<meta content="@Model.Value("seoMetaDescription")" name="description">
+<meta content="@Model.Value("keywords")" name="keywords">

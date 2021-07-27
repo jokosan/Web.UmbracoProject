@@ -1,0 +1,60 @@
+﻿@using Umbraco.Cms.Web.Common;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Threading.Tasks;
+@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Extensions;
+@using Umbraco.Cms.Core.Models;
+@using Web.UmbracoProject.Infrastructure.Components.Models;
+@using Web.UmbracoProject.Infrastructure.Components.Serveses.Contract;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Services
+@inject ILocalizationService LocalizationService
+
+    <link href="~/css/myStyle.css" rel="stylesheet" />
+    @{
+        //var topBar = Umbraco.ContentAtXPath($"//{TopBar.ModelTypeAlias}")?.FirstOrDefault();
+        //var envelope = topBar.Value<string>("email");
+        //var phone = topBar.Value<string>("phone");
+
+        var topBarContent = Umbraco.ContentAtRoot().DescendantsOrSelfOfType(TopBar.ModelTypeAlias).FirstOrDefault();
+
+        var socialLinks = Umbraco.ContentAtXPath($"//{SocialLinks.ModelTypeAlias}")?.FirstOrDefault();
+        var resultSocial = socialLinks.Value<IEnumerable<IPublishedElement>>("socialLinkList");
+
+        var culture = Model.GetCultureFromDomains();
+    }
+
+    <section id="topbar" class="d-none d-lg-block">
+        <div class="container d-flex">
+            <div class="contact-info mr-auto">
+                @if (topBarContent != null)
+                {
+                    <i class="icofont-envelope"></i><a href="mailto:@topBarContent.Value("email")">@topBarContent.Value("email")</a>
+                    <i class="icofont-phone"></i>@topBarContent.Value("phone")
+                }
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-link btn-sm " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bx bx-world"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @(await Component.InvokeAsync("Localization", new { url = Model.Cultures, currentCulture = Model.GetCultureFromDomains() }))                 
+                </div>
+            
+            </div>
+            <div class="social-links">
+                @foreach (var item in resultSocial)
+                {
+                    var iconFooter = item.Value<string>("iconFooter");
+                    var iconTop = item.Value<string>("iconTop");
+                    var linkSocial = item.Value<Link>("linkSocial");
+                    var nameSocial = item.Value<string>("nameSocial");
+
+                    <a href="@linkSocial.Url" class="@nameSocial" target="_blank"><i class="@iconTop"></i></a>
+                }
+            </div>
+        </div>
+    </section>

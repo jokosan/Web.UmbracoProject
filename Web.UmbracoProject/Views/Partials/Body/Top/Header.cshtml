@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container d-flex">
+        <div class="logo mr-auto">
+            @(await Component.InvokeAsync("WebSiteLogo"))
+        </div>
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                @(await Component.InvokeAsync("TopNavigation"))
+            </ul>
+        </nav>
+        <!-- .nav-menu -->
+    </div>
+</header>
+<!-- End Header -->

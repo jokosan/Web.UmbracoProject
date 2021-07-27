@@ -1,0 +1,59 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@model Web.UmbracoProject.Infrastructure.Components.Models.ViewComponentModel
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Core.Models;
+
+<section id="hero">
+    <div class="hero-container">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+            <div class="carousel-inner" role="listbox">
+                @* ???????? *@
+                @if (Model != null)
+                {
+                    var activeTrue = true;
+                    var carouselItem = "carousel-item active";
+
+                    foreach (var item in Model.publishedElementsList)
+                    {
+                        var headingHero = item.Value<string>("heading");
+                        var description = item.Value<string>("description");
+                        var linkToPage = item.Value<string>("linkToPage");
+                        var image = item.Value<MediaWithCrops>("imageSlide");
+
+                        <!-- Slide  -->
+                        if (item.Value<bool>("isVisible"))
+                        {
+                            <div class="@carouselItem" style="background: url(@image.MediaItem.Url())">
+                                <div class="carousel-container">
+                                    <div class="carousel-content">
+                                        <h2 class="animate__animated animate__fadeInDown"> <span>@headingHero</span></h2>
+                                        <p class="animate__animated animate__fadeInUp">@description</p>
+                                        <a href="@linkToPage" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        if (activeTrue)
+                        {
+                            activeTrue = false;
+                            carouselItem = "carousel-item";
+                        }
+                    }
+                }
+
+            </div>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon icofont-rounded-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section><!-- End Hero -->

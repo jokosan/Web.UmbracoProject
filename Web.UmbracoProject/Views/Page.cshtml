@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Page>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+<section id="blog" class="blog">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-8 entries">
+
+                <article class="entry entry-single">
+                   <h3 class="text-center">@Model.Heading</h3>
+                    @Model.BodyText
+                </article><!-- End blog entry -->
+            </div><!-- End blog entries list -->
+        </div><!-- End blog sidebar -->
+    </div>
+</section><!-- End Blog Section -->

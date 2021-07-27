@@ -1,0 +1,41 @@
+﻿@model Web.UmbracoProject.Infrastructure.Components.Models.ViewComponentModel
+@using System.Collections.Generic;
+@using Umbraco.Cms.Core.Models;
+
+@if (Model != null)
+{
+    @foreach (var item in Model.BlocksList)
+    {
+        var itemContent = item.Content;
+        var itemLink = itemContent.Value<Link>("link");
+
+        if (itemLink != null)
+        {
+
+            if (itemLink.Url.Contains("en"))
+            {
+                var url = "/" + itemLink.Name.ToLower() + "/";
+
+                if (Model.Position)
+                {
+                    <li><a href="@url">@itemLink.Name</a></li>
+                }
+                else
+                {
+                    <li><i class="bx bx-chevron-right"></i> <a href="@url">@itemLink.Name</a></li>
+                }
+            }
+            else
+            {
+                if (Model.Position)
+                {
+                    <li><a href="@itemLink.Url">@itemLink.Name</a></li>
+                }
+                else
+                {
+                    <li><i class="bx bx-chevron-right"></i> <a href="@itemLink.Url">@itemLink.Name</a></li>
+                }
+            }
+        }
+    }
+}

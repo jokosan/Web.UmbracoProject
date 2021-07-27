@@ -1,0 +1,103 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.AboutPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>About Us</li>
+        </ol>
+        <h2>About Us</h2>
+
+    </div>
+</section><!-- End Breadcrumbs -->
+<!-- ======= About Section ======= -->
+
+@if (Model.ImageAbout != null)
+{
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="@Model.ImageAbout.MediaItem.Url()" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>@Model.TitleAbout</h3>
+                    @Html.Raw(Model.TextAbout)
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- End About Section -->
+<!-- ======= Counts Section ======= -->
+<section id="counts" class="counts">
+    <div class="container">
+
+        <div class="row no-gutters">
+
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                <div class="count-box">
+                    <i class="icofont-simple-smile"></i>
+                    <span data-toggle="counter-up">232</span>
+                    <p><strong>Happy Clients</strong> consequuntur quae qui deca rode</p>
+                    <a href="#">Find out more &raquo;</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                <div class="count-box">
+                    <i class="icofont-document-folder"></i>
+                    <span data-toggle="counter-up">521</span>
+                    <p><strong>Projects</strong> adipisci atque cum quia aut numquam delectus</p>
+                    <a href="#">Find out more &raquo;</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                <div class="count-box">
+                    <i class="icofont-live-support"></i>
+                    <span data-toggle="counter-up">1,463</span>
+                    <p><strong>Hours Of Support</strong> aut commodi quaerat. Aliquam ratione</p>
+                    <a href="#">Find out more &raquo;</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                <div class="count-box">
+                    <i class="icofont-users-alt-5"></i>
+                    <span data-toggle="counter-up">15</span>
+                    <p><strong>Hard Workers</strong> rerum asperiores dolor molestiae doloribu</p>
+                    <a href="#">Find out more &raquo;</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Counts Section -->
+<!-- ======= Clients Section ======= -->
+<section id="clients" class="clients">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>@Model.TitleClients</h2>
+            <p>@Model.TextClients</p>
+        </div>
+
+        <div class="owl-carousel clients-carousel">
+            @foreach (var img in Model.ImgClients)
+            {
+                <img src="@img.MediaItem.Url()" alt="">
+            }
+        </div>
+
+    </div>
+</section><!-- End Clients Section -->
